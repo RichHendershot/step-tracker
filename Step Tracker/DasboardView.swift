@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  DasboardView.swift
 //  Step Tracker
 //
 //  Created by Richard Hendershot on 1/1/26.
@@ -9,8 +9,8 @@ import SwiftUI
 
 enum HealthMetrixContext: CaseIterable, Identifiable {
     case steps, weight
-    var id: Self { self
-    }
+    var id: Self { self }
+    
     var title: String {
         switch self {
         case .steps: 
@@ -21,7 +21,7 @@ enum HealthMetrixContext: CaseIterable, Identifiable {
     }
 }
 
-struct ContentView: View {
+struct DasboardView: View {
     
     @State private var selectedStat: HealthMetrixContext = .steps
     var isSteps: Bool { selectedStat == .steps }
@@ -88,7 +88,7 @@ struct ContentView: View {
             .padding()
             .navigationTitle("Dashboard")
             .navigationDestination(for: HealthMetrixContext.self) { metric in
-                Text(metric.title)
+                HealthDataListView(metric: metric)
             }
         }
         .tint(isSteps ? .pink : .indigo)
@@ -96,5 +96,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    DasboardView()
 }
