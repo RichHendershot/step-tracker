@@ -31,8 +31,8 @@ struct DasboardView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     Picker("Selected Stat", selection: $selectedStat) {
-                        ForEach(HealthMetrixContext.allCases) { metric in
-                            Text(metric.title)
+                        ForEach(HealthMetrixContext.allCases) {
+                            Text($0.title)
                         }
                     }
                     .pickerStyle(.segmented)
